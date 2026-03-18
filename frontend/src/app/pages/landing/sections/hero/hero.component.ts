@@ -18,19 +18,16 @@ import gsap from 'gsap';
       #heroSection
       class="relative min-h-screen w-full overflow-hidden flex items-end"
     >
-      <!-- Background Image -->
-      <div class="absolute inset-0 z-0">
-        <img
-          src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=1920&q=80"
-          alt=""
-          class="h-full w-full object-cover"
-        />
-        <!-- Gradient Overlay -->
-        <div
-          class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/80 to-charcoal/20"
-        ></div>
-        <!-- Secondary moss tint -->
-        <div class="absolute inset-0 bg-moss/30 mix-blend-multiply"></div>
+      <!-- Background — rich dark gradient with geometric grid -->
+      <div class="absolute inset-0 z-0 hero-bg">
+        <!-- Grid overlay -->
+        <div class="absolute inset-0 hero-grid opacity-[0.07]"></div>
+        <!-- Radial glow — moss top-right -->
+        <div class="absolute -top-40 -right-40 w-[700px] h-[700px] rounded-full bg-moss/30 blur-[120px]"></div>
+        <!-- Radial glow — clay bottom-left -->
+        <div class="absolute -bottom-20 -left-20 w-[500px] h-[500px] rounded-full bg-clay/20 blur-[100px]"></div>
+        <!-- Bottom fade to ensure text is readable -->
+        <div class="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/40 to-transparent"></div>
       </div>
 
       <!-- Content — pushed to bottom-left third -->
@@ -101,6 +98,15 @@ import gsap from 'gsap';
     </section>
   `,
   styles: [`
+    .hero-bg {
+      background: linear-gradient(135deg, #0f1a13 0%, #1A1A1A 40%, #1e2e22 70%, #0f1a13 100%);
+    }
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(242,240,233,1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(242,240,233,1) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
     @keyframes scrollPulse {
       0%, 100% { transform: scaleY(1); opacity: 0.4; }
       50% { transform: scaleY(0.6); opacity: 1; }

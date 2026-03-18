@@ -23,13 +23,11 @@ gsap.registerPlugin(ScrollTrigger);
       <!-- Background: Dark Moss -->
       <div class="absolute inset-0 bg-moss z-0"></div>
 
-      <!-- Parallaxing Texture Image -->
+      <!-- Subtle grid texture -->
       <div #bgTexture class="absolute inset-0 z-[1]">
-        <img
-          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&q=60"
-          alt=""
-          class="h-full w-full object-cover opacity-10 mix-blend-overlay"
-        />
+        <div class="h-full w-full opacity-[0.04]"
+          style="background-image: linear-gradient(rgba(242,240,233,1) 1px, transparent 1px), linear-gradient(90deg, rgba(242,240,233,1) 1px, transparent 1px); background-size: 80px 80px;">
+        </div>
       </div>
 
       <!-- Grain overlay for extra depth -->

@@ -19,18 +19,29 @@ public class AdminController {
 
     @GetMapping("/pending-users")
     public ResponseEntity<List<User>> getPendingUsers() {
-        List<User> pendingUsers = userRepository.findByStatus("PENDING");
-        return ResponseEntity.ok(pendingUsers);
+        return ResponseEntity.ok(userRepository.findByStatus("PENDING"));
+    }
+
+    @GetMapping("/all-users")
+    public ResponseEntity<List<User>> getAllUsers() {
+        return ResponseEntity.ok(userRepository.findAll());
     }
 
     @PostMapping("/approve/{userId}")
     public ResponseEntity<String> approveUser(@PathVariable Long userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
-
         user.setStatus("APPROVED");
         userRepository.save(user);
-
         return ResponseEntity.ok("User '" + user.getUsername() + "' has been approved.");
+    }
+
+    @PostMapping("/reject/{userId}")
+    public ResponseEntity<String> rejectUser(@PathVariable Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
+        user.setStatus("REJECTED");
+        userRepository.save(user);
+        return ResponseEntity.ok("User '" + user.getUsername() + "' has been rejected.");
     }
 }

@@ -2,13 +2,13 @@ package com.blaze.backend.controller;
 
 import com.blaze.backend.dto.AuthRequest;
 import com.blaze.backend.dto.AuthResponse;
+import com.blaze.backend.dto.ChangePasswordRequest;
 import com.blaze.backend.dto.RegisterRequest;
 import com.blaze.backend.service.AuthService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -30,5 +30,11 @@ public class AuthController {
     public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
         AuthResponse response = authService.login(request);
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/change-password")
+    public ResponseEntity<String> changePassword(@RequestBody ChangePasswordRequest request, Principal principal) {
+        authService.changePassword(principal.getName(), request);
+        return ResponseEntity.ok("Password changed successfully.");
     }
 }

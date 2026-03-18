@@ -54,65 +54,68 @@ gsap.registerPlugin(ScrollTrigger);
         </div>
 
         <!-- Middle Section — Links Grid -->
-        <div class="py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div class="py-16 grid grid-cols-1 sm:grid-cols-3 gap-12">
           <!-- Brand Column -->
           <div>
             <a routerLink="/" class="font-heading font-extrabold text-2xl tracking-tighter-custom text-cream">
               Blaze<span class="text-clay">.</span>
             </a>
             <p class="text-sm text-cream/30 leading-relaxed mt-4 max-w-xs">
-              Where ideas catch fire. A collaborative workspace built for
-              teams who move fast and think deeply.
+              A collaborative workspace for distributed teams — built to explore
+              AI-assisted development on Google Antigravity.
             </p>
           </div>
 
-          <!-- Product -->
+          <!-- Product — real links only -->
           <div>
             <h4 class="text-data text-cream/40 text-[10px] uppercase tracking-widest mb-5">
               Product
             </h4>
             <ul class="space-y-3">
               <li>
-                <a routerLink="/workspace" class="text-sm text-cream/50 hover:text-cream transition-colors">
+                <a routerLink="/workspace" class="text-sm text-cream/60 hover:text-cream transition-colors">
                   Workspace
                 </a>
               </li>
               <li>
-                <a routerLink="/register" class="text-sm text-cream/50 hover:text-cream transition-colors">
-                  Get Started
+                <a routerLink="/register" class="text-sm text-cream/60 hover:text-cream transition-colors">
+                  Create Account
                 </a>
               </li>
               <li>
-                <span class="text-sm text-cream/20">Integrations (Soon)</span>
-              </li>
-              <li>
-                <span class="text-sm text-cream/20">API Docs (Soon)</span>
+                <a routerLink="/login" class="text-sm text-cream/60 hover:text-cream transition-colors">
+                  Sign In
+                </a>
               </li>
             </ul>
           </div>
 
-          <!-- Company -->
+          <!-- Roadmap — honest future work -->
           <div>
             <h4 class="text-data text-cream/40 text-[10px] uppercase tracking-widest mb-5">
-              Company
+              On the Roadmap
             </h4>
             <ul class="space-y-3">
-              <li><span class="text-sm text-cream/50">About</span></li>
-              <li><span class="text-sm text-cream/50">Careers</span></li>
-              <li><span class="text-sm text-cream/50">Blog</span></li>
-              <li><span class="text-sm text-cream/50">Contact</span></li>
-            </ul>
-          </div>
-
-          <!-- Legal -->
-          <div>
-            <h4 class="text-data text-cream/40 text-[10px] uppercase tracking-widest mb-5">
-              Legal
-            </h4>
-            <ul class="space-y-3">
-              <li><span class="text-sm text-cream/50">Privacy Policy</span></li>
-              <li><span class="text-sm text-cream/50">Terms of Service</span></li>
-              <li><span class="text-sm text-cream/50">Security</span></li>
+              <li class="flex items-center gap-2">
+                <span class="w-1 h-1 rounded-full bg-clay/40"></span>
+                <span class="text-sm text-cream/25">Rich Text Editor</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-1 h-1 rounded-full bg-clay/40"></span>
+                <span class="text-sm text-cream/25">Real-Time Collaboration</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-1 h-1 rounded-full bg-clay/40"></span>
+                <span class="text-sm text-cream/25">Document Comments</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-1 h-1 rounded-full bg-clay/40"></span>
+                <span class="text-sm text-cream/25">Tags & Categories</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-1 h-1 rounded-full bg-clay/40"></span>
+                <span class="text-sm text-cream/25">Public Hosting</span>
+              </li>
             </ul>
           </div>
         </div>
@@ -123,12 +126,13 @@ gsap.registerPlugin(ScrollTrigger);
             &copy; 2026 Blaze. All rights reserved.
           </p>
           <div class="flex items-center gap-6">
-            <span class="text-data text-[10px] text-cream/15 uppercase tracking-widest">
-              Built with precision
-            </span>
-            <div class="flex items-center gap-1">
+            <a href="https://github.com/RajVamsee/blaze" target="_blank" rel="noopener"
+               class="text-data text-[10px] text-cream/30 hover:text-cream/60 uppercase tracking-widest transition-colors">
+              View on GitHub
+            </a>
+            <div class="flex items-center gap-1.5">
               <div class="w-1.5 h-1.5 rounded-full bg-clay animate-pulse"></div>
-              <span class="text-data text-[10px] text-clay/60">Systems Online</span>
+              <span class="text-data text-[10px] text-clay/60">Active Development</span>
             </div>
           </div>
         </div>

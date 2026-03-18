@@ -7,6 +7,7 @@ import {
   NgZone,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -15,7 +16,7 @@ gsap.registerPlugin(ScrollTrigger);
 @Component({
   selector: 'app-features',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   template: `
     <section #featuresSection class="section-organic py-32 bg-cream">
       <!-- Section Header -->
@@ -50,6 +51,16 @@ gsap.registerPlugin(ScrollTrigger);
               Documents auto-prioritize based on activity, edits, and team engagement.
             </p>
           </div>
+
+          <!-- Card CTA -->
+          <a routerLink="/workspace"
+            class="inline-flex items-center gap-2 mt-4 text-xs font-heading font-semibold
+                   text-clay hover:text-clay-dark transition-colors group">
+            Open Workspace
+            <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
 
           <!-- Shuffler Stack -->
           <div #shufflerContainer class="relative mt-6 h-48 w-full">
@@ -106,6 +117,14 @@ gsap.registerPlugin(ScrollTrigger);
             </p>
           </div>
 
+          <!-- Card CTA -->
+          <div class="inline-flex items-center gap-2 mt-4 text-xs font-heading font-semibold text-charcoal/30">
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Coming in next release
+          </div>
+
           <!-- Live Feed Label -->
           <div class="flex items-center gap-2 mt-6 mb-3">
             <span class="relative flex h-2 w-2">
@@ -151,6 +170,14 @@ gsap.registerPlugin(ScrollTrigger);
             <p class="text-sm text-charcoal/50 leading-relaxed">
               Intelligent task assignment based on team availability.
             </p>
+          </div>
+
+          <!-- Card CTA -->
+          <div class="inline-flex items-center gap-2 mt-4 text-xs font-heading font-semibold text-charcoal/30">
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Coming in next release
           </div>
 
           <!-- Weekly Grid -->

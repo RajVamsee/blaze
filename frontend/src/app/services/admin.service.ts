@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
-export interface PendingUser {
+export interface ManagedUser {
   id: number;
   username: string;
   email: string;
@@ -17,11 +17,19 @@ export class AdminService {
 
   constructor(private http: HttpClient) {}
 
-  getPendingUsers(): Observable<PendingUser[]> {
-    return this.http.get<PendingUser[]>(this.API + '/pending-users');
+  getPendingUsers(): Observable<ManagedUser[]> {
+    return this.http.get<ManagedUser[]>(this.API + '/pending-users');
+  }
+
+  getAllUsers(): Observable<ManagedUser[]> {
+    return this.http.get<ManagedUser[]>(this.API + '/all-users');
   }
 
   approveUser(userId: number): Observable<string> {
     return this.http.post(this.API + '/approve/' + userId, {}, { responseType: 'text' });
+  }
+
+  rejectUser(userId: number): Observable<string> {
+    return this.http.post(this.API + '/reject/' + userId, {}, { responseType: 'text' });
   }
 }

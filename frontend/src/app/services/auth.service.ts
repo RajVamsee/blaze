@@ -47,6 +47,13 @@ export class AuthService {
     return this.currentUser?.role === 'ROLE_ADMIN';
   }
 
+  changePassword(currentPassword: string, newPassword: string): Observable<string> {
+    return this.http.post(this.API + '/change-password',
+      { currentPassword, newPassword },
+      { responseType: 'text' }
+    );
+  }
+
   register(req: RegisterRequest): Observable<string> {
     return this.http.post(this.API + '/register', req, { responseType: 'text' });
   }

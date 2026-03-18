@@ -2,6 +2,7 @@ package com.blaze.backend.service;
 
 import com.blaze.backend.dto.AuthRequest;
 import com.blaze.backend.dto.AuthResponse;
+import com.blaze.backend.dto.ChangePasswordRequest;
 import com.blaze.backend.dto.RegisterRequest;
 import com.blaze.backend.entity.Role;
 import com.blaze.backend.entity.User;
@@ -75,5 +76,17 @@ public class AuthService {
         String token = jwtTokenProvider.generateToken(authentication);
 
         return new AuthResponse(token, user.getUsername(), user.getRole().getName());
+    }
+
+    public void changePassword(String username, ChangePasswordRequest request) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (!passwordEncoder.matches(request.getCurrentPassword(), user.getPasswordHash())) {
+            throw new BadCredentialsException("Current password is incorrect");
+        }
+
+        user.setPasswordHash(passwordEncoder.encode(request.getNewPassword()));
+        userRepository.save(user);
     }
 }
