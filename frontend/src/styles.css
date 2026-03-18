@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════════════
+   BLAZE — Preset A: Organic Tech — Global Design System
+   ═══════════════════════════════════════════════════════ */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+    background-color: #F2F0E9;
+    color: #1A1A1A;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+    letter-spacing: -0.04em;
+    font-weight: 700;
+  }
+
+  ::selection {
+    background-color: #CC5833;
+    color: #F2F0E9;
+  }
+
+  /* Scrollbar — Organic Tech Aesthetic */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2E4036;
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3A5446;
+  }
+}
+
+@layer components {
+  /* ── Magnetic Button ── */
+  .btn-magnetic {
+    @apply relative inline-flex items-center justify-center overflow-hidden
+           rounded-organic px-8 py-3
+           font-heading font-semibold text-sm tracking-wide
+           transition-transform duration-300 ease-magnetic;
+  }
+
+  .btn-magnetic:hover {
+    transform: scale(1.03);
+  }
+
+  .btn-magnetic:active {
+    transform: scale(0.98);
+  }
+
+  /* Sliding background layer */
+  .btn-magnetic .btn-slide {
+    @apply absolute inset-0 -translate-x-full transition-transform duration-500 ease-magnetic;
+  }
+
+  .btn-magnetic:hover .btn-slide {
+    @apply translate-x-0;
+  }
+
+  .btn-magnetic .btn-label {
+    @apply relative z-10;
+  }
+
+  /* ── Primary (Clay) ── */
+  .btn-primary {
+    @apply btn-magnetic bg-clay text-cream;
+  }
+  .btn-primary .btn-slide {
+    @apply bg-clay-dark;
+  }
+
+  /* ── Secondary (Moss) ── */
+  .btn-secondary {
+    @apply btn-magnetic bg-moss text-cream;
+  }
+  .btn-secondary .btn-slide {
+    @apply bg-moss-dark;
+  }
+
+  /* ── Ghost ── */
+  .btn-ghost {
+    @apply btn-magnetic bg-transparent text-charcoal border border-charcoal/20;
+  }
+  .btn-ghost .btn-slide {
+    @apply bg-charcoal/5;
+  }
+
+  /* ── Organic Card Container ── */
+  .card-organic {
+    @apply rounded-organic bg-white/70 backdrop-blur-sm
+           shadow-organic border border-charcoal/5
+           p-6 transition-shadow duration-300 ease-magnetic;
+  }
+  .card-organic:hover {
+    @apply shadow-organic-lg;
+  }
+
+  /* ── Drama Text (Cormorant Garamond Italic) ── */
+  .text-drama {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+  }
+
+  /* ── Mono / Data Text ── */
+  .text-data {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Input Fields ── */
+  .input-organic {
+    @apply w-full rounded-organic bg-white/60 backdrop-blur-sm
+           border border-charcoal/10 px-5 py-3
+           font-heading text-sm text-charcoal
+           placeholder:text-charcoal/40
+           focus:outline-none focus:border-moss focus:ring-1 focus:ring-moss/30
+           transition-all duration-300 ease-magnetic;
+  }
+
+  /* ── Section Container ── */
+  .section-organic {
+    @apply mx-auto max-w-7xl px-6 py-20;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  .gradient-moss {
+    background: linear-gradient(135deg, #2E4036 0%, #3A5446 100%);
+  }
+
+  .gradient-clay {
+    background: linear-gradient(135deg, #CC5833 0%, #E06A45 100%);
+  }
+}
