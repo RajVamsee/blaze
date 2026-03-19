@@ -13,8 +13,21 @@ export interface DocumentResponse {
   title: string;
   content: string;
   authorId: number;
+  authorUsername: string;
   createdAt: string;
   updatedAt: string;
+  owner: boolean;
+  canEdit: boolean;
+  canRequestAccess: boolean;
+  permissionStatus: string | null;
+}
+
+export interface DocumentPermissionResponse {
+  id: number;
+  requesterId: number;
+  requesterUsername: string;
+  status: string;
+  createdAt: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -41,5 +54,21 @@ export class DocumentService {
 
   delete(id: number): Observable<string> {
     return this.http.delete(this.API + '/' + id, { responseType: 'text' });
+  }
+
+  requestAccess(id: number): Observable<string> {
+    return this.http.post(`${this.API}/${id}/request-access`, {}, { responseType: 'text' });
+  }
+
+  getPermissions(id: number): Observable<DocumentPermissionResponse[]> {
+    return this.http.get<DocumentPermissionResponse[]>(`${this.API}/${id}/permissions`);
+  }
+
+  approvePermission(docId: number, permId: number): Observable<string> {
+    return this.http.put(`${this.API}/${docId}/permissions/${permId}/approve`, {}, { responseType: 'text' });
+  }
+
+  denyPermission(docId: number, permId: number): Observable<string> {
+    return this.http.put(`${this.API}/${docId}/permissions/${permId}/deny`, {}, { responseType: 'text' });
   }
 }
