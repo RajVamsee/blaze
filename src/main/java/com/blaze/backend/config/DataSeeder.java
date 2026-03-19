@@ -38,7 +38,7 @@ public class DataSeeder implements CommandLineRunner {
                     return roleRepository.save(role);
                 });
 
-        Role devRole = roleRepository.findByName("ROLE_DEVELOPER")
+        roleRepository.findByName("ROLE_DEVELOPER")
                 .orElseGet(() -> {
                     Role role = new Role();
                     role.setName("ROLE_DEVELOPER");
@@ -53,18 +53,7 @@ public class DataSeeder implements CommandLineRunner {
             u.setPasswordHash(passwordEncoder.encode("admin123"));
             u.setRole(adminRole);
             u.setStatus("APPROVED");
-            return userRepository.save(u);
-        });
-
-        // --- Dev user ---
-        User dev = userRepository.findByUsername("dev").orElseGet(() -> {
-            User u = new User();
-            u.setUsername("dev");
-            u.setEmail("dev@blaze.dev");
-            u.setPasswordHash(passwordEncoder.encode("dev123"));
-            u.setRole(devRole);
-            u.setStatus("APPROVED");
-            System.out.println("==> Seeded developer user: dev / dev123");
+            System.out.println("==> Seeded admin user: admin / admin123");
             return userRepository.save(u);
         });
 
@@ -85,13 +74,7 @@ public class DataSeeder implements CommandLineRunner {
                     "4. Approve or deny requests directly from the document editor.\n\n" +
                     "Admin can view and manage all documents and users across the workspace.");
 
-            seedDocument(dev.getId(),
-                    "Engineering Notes",
-                    "This is a sample document created by the dev user.\n\n" +
-                    "Only the owner can edit this document. Other users can view it and request edit access.\n\n" +
-                    "Try logging in as a different user and requesting access to see the permission flow in action.");
-
-            System.out.println("==> Seeded 3 sample documents");
+            System.out.println("==> Seeded 2 sample documents");
         }
     }
 

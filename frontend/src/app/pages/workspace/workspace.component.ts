@@ -17,6 +17,7 @@ import {
   DocumentResponse,
   DocumentPermissionResponse,
 } from '../../services/document.service';
+import { PresenceService, UserPresence } from '../../services/presence.service';
 import gsap from 'gsap';
 
 @Component({
@@ -90,7 +91,10 @@ import gsap from 'gsap';
         </div>
       </header>
 
-      <div class="max-w-7xl mx-auto px-6 py-10">
+      <div class="max-w-7xl mx-auto px-6 py-10 flex gap-8 items-start">
+
+        <!-- Main content -->
+        <div class="flex-1 min-w-0">
         <!-- Page Header -->
         <div class="flex items-end justify-between mb-10">
           <div>
@@ -333,7 +337,61 @@ import gsap from 'gsap';
           </ng-container>
 
         </div>
-      </div>
+        </div><!-- /main content -->
+
+        <!-- Team Presence Panel -->
+        <aside class="hidden lg:flex flex-col w-56 shrink-0 sticky top-24 self-start">
+          <div class="rounded-3xl border border-charcoal/8 bg-white/60 backdrop-blur-sm overflow-hidden">
+            <div class="px-5 py-4 border-b border-charcoal/6">
+              <span class="text-[10px] font-heading font-bold uppercase tracking-widest text-charcoal/40">Team</span>
+            </div>
+            <div class="px-3 py-3 space-y-1">
+              <div *ngIf="teamLoading" class="px-2 py-4 text-center">
+                <div class="inline-block w-4 h-4 border-2 border-clay/30 border-t-clay rounded-full animate-spin"></div>
+              </div>
+              <div *ngFor="let member of teamPresence"
+                   class="flex items-center gap-3 px-2 py-2 rounded-xl hover:bg-charcoal/4 transition-colors">
+                <!-- Avatar -->
+                <div class="w-7 h-7 rounded-full bg-moss/20 flex items-center justify-center font-heading font-bold text-moss text-xs shrink-0">
+                  {{ member.username.charAt(0).toUpperCase() }}
+                </div>
+                <!-- Name -->
+                <span class="text-sm font-heading font-medium text-charcoal truncate flex-1">{{ member.username }}</span>
+                <!-- Status dot -->
+                <div class="shrink-0 flex flex-col items-center gap-0.5">
+                  <div class="w-2 h-2 rounded-full"
+                       [ngClass]="{
+                         'bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]': member.presenceStatus === 'ONLINE',
+                         'bg-amber-400 shadow-[0_0_6px_rgba(251,191,36,0.6)]': member.presenceStatus === 'IDLE',
+                         'bg-charcoal/20': member.presenceStatus === 'OFFLINE'
+                       }">
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="!teamLoading && teamPresence.length === 0"
+                   class="px-2 py-4 text-center text-xs text-charcoal/30 font-heading">
+                No teammates yet
+              </div>
+            </div>
+            <!-- Legend -->
+            <div class="px-5 py-3 border-t border-charcoal/6 flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <div class="w-1.5 h-1.5 rounded-full bg-emerald-400"></div>
+                <span class="text-[10px] text-charcoal/35 font-heading uppercase tracking-widest">Online</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-1.5 h-1.5 rounded-full bg-amber-400"></div>
+                <span class="text-[10px] text-charcoal/35 font-heading uppercase tracking-widest">Idle</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-1.5 h-1.5 rounded-full bg-charcoal/20"></div>
+                <span class="text-[10px] text-charcoal/35 font-heading uppercase tracking-widest">Offline</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+      </div><!-- /outer flex -->
     </div>
   `,
   styles: [`
@@ -371,6 +429,12 @@ export class WorkspaceComponent implements OnInit, AfterViewInit, OnDestroy {
   loadingPermissions = false;
   showAccessRequests = false;
 
+  // Team presence
+  teamPresence: UserPresence[] = [];
+  teamLoading = true;
+  private heartbeatTimer: any;
+  private presenceTimer: any;
+
   get pendingCount(): number {
     return this.allPermissions.filter(p => p.status === 'PENDING').length;
   }
@@ -379,10 +443,19 @@ export class WorkspaceComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     public authService: AuthService,
-    private documentService: DocumentService
+    private documentService: DocumentService,
+    private presenceService: PresenceService
   ) {}
 
-  ngOnInit(): void { this.loadDocuments(); }
+  ngOnInit(): void {
+    this.loadDocuments();
+    this.loadTeamPresence();
+    // Send heartbeat immediately then every 60s
+    this.presenceService.heartbeat().subscribe();
+    this.heartbeatTimer = setInterval(() => this.presenceService.heartbeat().subscribe(), 60_000);
+    // Refresh presence list every 30s
+    this.presenceTimer = setInterval(() => this.loadTeamPresence(), 30_000);
+  }
 
   ngAfterViewInit(): void {
     this.ctx = gsap.context(() => {}, this.workspaceSection.nativeElement);
@@ -521,5 +594,16 @@ export class WorkspaceComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void { this.ctx?.revert(); }
+  loadTeamPresence(): void {
+    this.presenceService.getTeam().subscribe({
+      next: (team) => { this.teamPresence = team; this.teamLoading = false; },
+      error: () => { this.teamLoading = false; },
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.ctx?.revert();
+    clearInterval(this.heartbeatTimer);
+    clearInterval(this.presenceTimer);
+  }
 }

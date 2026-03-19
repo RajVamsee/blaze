@@ -79,6 +79,14 @@ export class AuthService {
     return localStorage.getItem(this.TOKEN_KEY);
   }
 
+  sendForgotPasswordOtp(email: string): Observable<string> {
+    return this.http.post(this.API + '/forgot-password/send-otp', { email }, { responseType: 'text' });
+  }
+
+  resetPassword(email: string, code: string, newPassword: string): Observable<string> {
+    return this.http.post(this.API + '/forgot-password/reset', { email, code, newPassword }, { responseType: 'text' });
+  }
+
   private getStoredUser(): AuthResponse | null {
     const raw = localStorage.getItem(this.USER_KEY);
     return raw ? JSON.parse(raw) : null;
