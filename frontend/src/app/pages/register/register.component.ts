@@ -18,7 +18,7 @@ import gsap from 'gsap';
   template: `
     <section
       #registerSection
-      class="min-h-screen flex items-center justify-center px-6 py-20 bg-cream"
+      class="min-h-screen flex items-center justify-center px-6 py-10 sm:py-20 bg-cream"
     >
       <!-- Decorative side element -->
       <div class="hidden lg:flex flex-col justify-center items-end pr-16 max-w-md">

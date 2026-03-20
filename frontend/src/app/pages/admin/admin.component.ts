@@ -41,7 +41,7 @@ type StatusTab = 'ALL' | 'PENDING' | 'APPROVED' | 'REJECTED';
                 <div class="w-7 h-7 rounded-full bg-clay flex items-center justify-center font-heading font-bold text-cream text-xs">
                   {{ authService.currentUser?.username?.charAt(0)?.toUpperCase() }}
                 </div>
-                <span class="text-sm font-heading font-medium text-charcoal">{{ authService.currentUser?.username }}</span>
+                <span class="hidden sm:block text-sm font-heading font-medium text-charcoal max-w-[80px] truncate">{{ authService.currentUser?.username }}</span>
                 <svg class="w-3 h-3 text-charcoal/40 transition-transform duration-200"
                      [class.rotate-180]="dropdownOpen"
                      fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -90,7 +90,7 @@ type StatusTab = 'ALL' | 'PENDING' | 'APPROVED' | 'REJECTED';
         <!-- Page Header -->
         <div class="mb-8">
           <span class="text-data text-clay uppercase tracking-widest text-[10px] mb-2 block">Admin Panel</span>
-          <h1 class="font-heading text-4xl font-extrabold tracking-tighter-custom mb-2">
+          <h1 class="font-heading text-3xl sm:text-4xl font-extrabold tracking-tighter-custom mb-2">
             User Management<span class="text-clay">.</span>
           </h1>
           <p class="text-sm text-charcoal/50">Manage user registrations and access permissions</p>
@@ -117,11 +117,11 @@ type StatusTab = 'ALL' | 'PENDING' | 'APPROVED' | 'REJECTED';
         </div>
 
         <!-- Tabs + Refresh -->
-        <div class="flex items-center justify-between mb-6">
-          <div class="flex gap-1 p-1 rounded-full bg-charcoal/5">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+          <div class="flex flex-wrap gap-1 p-1 rounded-2xl bg-charcoal/5">
             <button *ngFor="let tab of tabs"
               (click)="activeTab = tab"
-              class="px-4 py-1.5 rounded-full text-xs font-heading font-medium transition-all duration-200"
+              class="px-3 py-1.5 rounded-full text-xs font-heading font-medium transition-all duration-200"
               [class]="activeTab === tab
                 ? 'bg-charcoal text-cream'
                 : 'text-charcoal/50 hover:text-charcoal'">

@@ -44,7 +44,7 @@ import gsap from 'gsap';
                 <div class="w-7 h-7 rounded-full bg-clay flex items-center justify-center font-heading font-bold text-cream text-xs">
                   {{ authService.currentUser?.username?.charAt(0)?.toUpperCase() }}
                 </div>
-                <span class="text-sm font-heading font-medium text-charcoal">{{ authService.currentUser?.username }}</span>
+                <span class="hidden sm:block text-sm font-heading font-medium text-charcoal max-w-[80px] truncate">{{ authService.currentUser?.username }}</span>
                 <svg class="w-3 h-3 text-charcoal/40 transition-transform duration-200"
                      [class.rotate-180]="dropdownOpen"
                      fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -96,10 +96,10 @@ import gsap from 'gsap';
         <!-- Main content -->
         <div class="flex-1 min-w-0">
         <!-- Page Header -->
-        <div class="flex items-end justify-between mb-10">
+        <div class="flex flex-wrap items-end justify-between gap-4 mb-10">
           <div>
             <span class="text-data text-clay uppercase tracking-widest text-[10px] mb-2 block">Workspace</span>
-            <h1 class="font-heading text-4xl font-extrabold tracking-tighter-custom">
+            <h1 class="font-heading text-3xl sm:text-4xl font-extrabold tracking-tighter-custom">
               Documents<span class="text-clay">.</span>
             </h1>
           </div>

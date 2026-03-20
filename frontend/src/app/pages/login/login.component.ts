@@ -17,7 +17,7 @@ import gsap from 'gsap';
   imports: [CommonModule, FormsModule, RouterLink],
   template: `
     <ng-container>
-    <section #loginSection class="min-h-screen flex items-center justify-center px-6 py-20 bg-cream">
+    <section #loginSection class="min-h-screen flex items-center justify-center px-6 py-10 sm:py-20 bg-cream">
       <!-- Decorative side element -->
       <div class="hidden lg:flex flex-col justify-center items-end pr-16 max-w-md">
         <div #decoBlock>

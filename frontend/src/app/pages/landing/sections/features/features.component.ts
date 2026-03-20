@@ -18,9 +18,9 @@ gsap.registerPlugin(ScrollTrigger);
   standalone: true,
   imports: [CommonModule, RouterLink],
   template: `
-    <section #featuresSection class="section-organic py-32 bg-cream">
+    <section #featuresSection class="section-organic py-20 lg:py-32 bg-cream">
       <!-- Section Header -->
-      <div #sectionHeader class="text-center mb-20">
+      <div #sectionHeader class="text-center mb-12 lg:mb-20">
         <span class="text-data text-clay uppercase tracking-widest text-xs mb-4 block">
           Functional Artifacts
         </span>
@@ -38,7 +38,7 @@ gsap.registerPlugin(ScrollTrigger);
         <!-- ═══ CARD 1: Diagnostic Shuffler ═══ -->
         <div
           #card1
-          class="card-organic relative min-h-[420px] flex flex-col justify-between overflow-hidden"
+          class="card-organic relative min-h-[360px] lg:min-h-[420px] flex flex-col justify-between overflow-hidden"
         >
           <div>
             <span class="text-data text-moss/50 text-[10px] uppercase tracking-widest">
@@ -103,7 +103,7 @@ gsap.registerPlugin(ScrollTrigger);
         <!-- ═══ CARD 2: Telemetry Typewriter ═══ -->
         <div
           #card2
-          class="card-organic relative min-h-[420px] flex flex-col overflow-hidden"
+          class="card-organic relative min-h-[360px] lg:min-h-[420px] flex flex-col overflow-hidden"
         >
           <div>
             <span class="text-data text-moss/50 text-[10px] uppercase tracking-widest">
@@ -158,7 +158,7 @@ gsap.registerPlugin(ScrollTrigger);
         <!-- ═══ CARD 3: Cursor Protocol Scheduler ═══ -->
         <div
           #card3
-          class="card-organic relative min-h-[420px] flex flex-col overflow-hidden"
+          class="card-organic relative min-h-[360px] lg:min-h-[420px] flex flex-col overflow-hidden"
         >
           <div>
             <span class="text-data text-moss/50 text-[10px] uppercase tracking-widest">

@@ -39,10 +39,10 @@ interface Ember {
       </div>
 
       <!-- Content row -->
-      <div class="relative z-10 w-full max-w-7xl mx-auto px-6 pb-28 pt-40 lg:pb-36 flex items-end justify-between gap-12">
+      <div class="relative z-10 w-full max-w-7xl mx-auto px-6 pt-28 pb-16 lg:pt-40 lg:pb-36 flex flex-col items-center gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
 
         <!-- Left: text -->
-        <div class="max-w-3xl">
+        <div class="max-w-3xl w-full">
           <div #eyebrow class="flex items-center gap-3 mb-8 opacity-0">
             <div class="h-px w-12 bg-clay"></div>
             <span class="text-data text-clay uppercase tracking-widest text-xs">
@@ -52,7 +52,7 @@ interface Ember {
 
           <h1
             #line1
-            class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold
+            class="font-heading text-3xl sm:text-5xl lg:text-6xl font-extrabold
                    tracking-tighter-custom text-cream leading-[1.05] mb-2 opacity-0"
           >
             Where ideas find their
@@ -60,7 +60,7 @@ interface Ember {
 
           <h1
             #line2
-            class="text-drama text-6xl sm:text-8xl lg:text-[10rem] font-semibold
+            class="text-drama text-5xl sm:text-7xl lg:text-[10rem] font-semibold
                    text-cream leading-[0.9] mb-10 opacity-0"
           >
             Ignition<span class="text-clay">.</span>
@@ -77,14 +77,14 @@ interface Ember {
           </p>
 
           <div #ctaRow class="flex flex-wrap gap-4 opacity-0">
-            <a routerLink="/register" class="btn-primary !px-10 !py-4 !text-base">
+            <a routerLink="/register" class="btn-primary !px-7 sm:!px-10 !py-3 sm:!py-4 !text-sm sm:!text-base">
               <span class="btn-slide"></span>
               <span class="btn-label">Start Building</span>
             </a>
             <a
               routerLink="/login"
               class="btn-magnetic bg-cream/10 text-cream border border-cream/20
-                     !px-10 !py-4 !text-base backdrop-blur-sm"
+                     !px-7 sm:!px-10 !py-3 sm:!py-4 !text-sm sm:!text-base backdrop-blur-sm"
             >
               <span class="btn-slide bg-cream/10"></span>
               <span class="btn-label">Sign In</span>
@@ -92,11 +92,11 @@ interface Ember {
           </div>
         </div>
 
-        <!-- Right: Blaze emblem — centered in the right half -->
-        <div class="hidden lg:flex items-center justify-center shrink-0 -translate-x-24 -translate-y-24">
+        <!-- Right: Blaze emblem — visible on all screens, larger on desktop -->
+        <div class="flex items-center justify-center shrink-0 lg:-translate-x-24 lg:-translate-y-24">
           <div
             #blazeEmblem
-            class="blaze-emblem flex flex-col items-center gap-6 opacity-0 cursor-default select-none"
+            class="blaze-emblem flex flex-col items-center gap-4 lg:gap-6 opacity-0 cursor-default select-none"
             (mouseenter)="onEmblemEnter($event)"
             (mousemove)="onEmblemMove($event)"
             (mouseleave)="onEmblemLeave()"
@@ -104,7 +104,7 @@ interface Ember {
             <div class="relative">
               <canvas #emberCanvas class="absolute inset-0 pointer-events-none" style="z-index:10; border-radius: 48px;"></canvas>
               <div class="blaze-logo-mark" #logoMark>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="280" height="280">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="280" height="280" class="w-44 h-44 lg:w-[280px] lg:h-[280px]">
                   <defs>
                     <linearGradient id="heroFlame" x1="0%" y1="100%" x2="20%" y2="0%">
                       <stop offset="0%" stop-color="#C4572A"/>
@@ -132,7 +132,7 @@ interface Ember {
                 </svg>
               </div>
             </div>
-            <span class="blaze-wordmark font-heading font-extrabold text-5xl tracking-widest"
+            <span class="blaze-wordmark font-heading font-extrabold text-3xl lg:text-5xl tracking-widest"
                   style="background: linear-gradient(135deg, #C4572A 0%, #E8732A 50%, #FFB347 100%);
                          -webkit-background-clip: text; -webkit-text-fill-color: transparent;
                          background-clip: text; letter-spacing: 0.18em;">
@@ -142,7 +142,7 @@ interface Ember {
         </div>
 
         <!-- Scroll Indicator -->
-        <div #scrollIndicator class="absolute bottom-8 right-8 flex flex-col items-center gap-2 opacity-0">
+        <div #scrollIndicator class="absolute bottom-8 right-8 hidden sm:flex flex-col items-center gap-2 opacity-0">
           <span class="text-data text-cream/30 text-[10px] uppercase tracking-widest rotate-90 origin-center translate-y-6">
             Scroll
           </span>

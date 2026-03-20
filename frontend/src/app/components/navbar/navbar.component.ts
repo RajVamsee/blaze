@@ -62,7 +62,7 @@ import { AuthService } from '../../services/auth.service';
         <a
           routerLink="/workspace"
           routerLinkActive="!text-clay"
-          class="px-5 py-2 rounded-full text-base font-heading font-semibold
+          class="hidden sm:block px-5 py-2 rounded-full text-base font-heading font-semibold
                  transition-all duration-300 ease-magnetic"
           [class]="scrolled
             ? 'text-charcoal/70 hover:text-charcoal hover:bg-charcoal/5'
@@ -74,7 +74,7 @@ import { AuthService } from '../../services/auth.service';
           *ngIf="isAdmin"
           routerLink="/admin"
           routerLinkActive="!text-clay"
-          class="px-5 py-2 rounded-full text-base font-heading font-semibold
+          class="hidden sm:block px-5 py-2 rounded-full text-base font-heading font-semibold
                  transition-all duration-300 ease-magnetic"
           [class]="scrolled
             ? 'text-charcoal/70 hover:text-charcoal hover:bg-charcoal/5'
@@ -96,7 +96,7 @@ import { AuthService } from '../../services/auth.service';
                         font-heading font-bold text-cream text-sm">
               {{ username.charAt(0).toUpperCase() }}
             </div>
-            <span class="text-base font-heading font-semibold">{{ username }}</span>
+            <span class="hidden sm:block text-base font-heading font-semibold max-w-[100px] truncate">{{ username }}</span>
             <!-- Chevron -->
             <svg class="w-3 h-3 transition-transform duration-200"
                  [class.rotate-180]="dropdownOpen"
